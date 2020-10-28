@@ -13,10 +13,11 @@ class Power
     public:
     Power() : powr(0), num(0)
     {}
-    void set(int pwr, int nmbr)
+    int set(int pwr, int nmbr)
     {
         powr = pwr;
         num = nmbr;
+        return (0);
     }
     int calculate()
     {
