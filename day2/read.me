@@ -1,0 +1,356 @@
+Уверен, что это быдлокод и можно сделать лучше и оптимизированнее, но мне кажется, что нужно будет 2 класса и несколько (13) производных, первый из них класс Card (от которого и происходят 13 производных классов):
+
+class	Card
+{
+	private:
+	int	value;
+	char	face;
+	protected:
+	Card(char f, int curr_pts): face(f)
+	{
+		switch(f)
+		{
+			case '2':
+			case '3':
+			case '4':
+			case '5':
+			case '6':
+			case '7':
+			case '8':
+			case '9':
+				  value = f - 48;
+				  break ;
+			case 't':
+			case 'j':
+			case 'Q':
+			case 'K':
+				  value = 10;
+				  break ;
+			case 'A':
+				  value = (curr_pts > 10 ? 1 : 11);
+				  break ;
+		}
+	}
+	virtual int getCount() = 0;
+}
+
+производные классы:
+
+class	Two: protected Card
+{
+	private:
+	static int count;
+	public:
+	Two(): Card('2', 0)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~Two()
+	{
+		count++;
+	}
+}
+
+class	Three: protected Card
+{
+	private:
+	static int count;
+	public:
+	Three(): Card('3', 0)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~Three()
+	{
+		count++;
+	}
+}
+
+class	Four: protected Card
+{
+	private:
+	static int count;
+	public:
+	Four(): Card('4', 0)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~Four()
+	{
+		count++;
+	}
+}
+
+class	Five: protected Card
+{
+	private:
+	static int count;
+	public:
+	Five(): Card('5', 0)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~Five()
+	{
+		count++;
+	}
+}
+
+class	Six: protected Card
+{
+	private:
+	static int count;
+	public:
+	Six(): Card('6', 0)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~Six()
+	{
+		count++;
+	}
+}
+
+class	Seven: protected Card
+{
+	private:
+	static int count;
+	public:
+	Seven(): Card('7', 0)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~Seven()
+	{
+		count++;
+	}
+}
+
+class	Eight: protected Card
+{
+	private:
+	static int count;
+	public:
+	Eight(): Card('8', 0)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~Eight()
+	{
+		count++;
+	}
+}
+
+class	Nine: protected Card
+{
+	private:
+	static int count;
+	public:
+	Nine(): Card('9', 0)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~Nine()
+	{
+		count++;
+	}
+}
+
+class	Ten: protected Card
+{
+	private:
+	static int count;
+	public:
+	Ten(): Card('t', 0)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~Ten()
+	{
+		count++;
+	}
+}
+
+class	Jack: protected Card
+{
+	private:
+	static int count;
+	public:
+	Jack(): Card('j', 0)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~Jack()
+	{
+		count++;
+	}
+}
+
+class	Queen: protected Card
+{
+	private:
+	static int count;
+	public:
+	Queen(): Card('Q', 0)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~Queen()
+	{
+		count++;
+	}
+}
+
+class	King: protected Card
+{
+	private:
+	static int count;
+	public:
+	King(): Card('K', 0)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~King()
+	{
+		count++;
+	}
+}
+
+class	Ace: protected Card
+{
+	private:
+	static int count;
+	public:
+	Ace(curr_pts): Card('A', curr_pts)
+	{
+		count--;
+	}
+	int getCount()
+	{
+		return (count);
+	}
+	~Ace()
+	{
+		count++;
+	}
+}
+
+Ну и второй основной класс:
+
+class	Player
+{
+	private:
+	int	bet;
+	int	points;
+	Card*	hand[11];
+	public:
+	Player(): bet(0), points(0), iter(0)
+	{
+	}
+	int getCard()
+	{
+		int	used[13];
+		do
+		{
+			int	choise;
+			do
+			{
+				choise = rand()%13 + 1;
+			}while (used[choise - 1]);
+			switch (choise)
+			{
+				case 1:	hand[iter] = new Ace(points);
+					break ;
+				case 2:	hand[iter] = new Two();
+					break ;
+				case 3:	hand[iter] = new Three();
+					break ;
+				case 4:	hand[iter] = new Four();
+					break ;
+				case 5:	hand[iter] = new Five();
+					break ;
+				case 6:	hand[iter] = new Six();
+					break ;
+				case 7:	hand[iter] = new Seven();
+					break ;
+				case 8:	hand[iter] = new Eight();
+					break ;
+				case 9:	hand[iter] = new Nine();
+					break ;
+				case 10:hand[iter] = new Ten();
+					break ;
+				case 11:hand[iter] = new Jack();
+					break ;
+				case 12:hand[iter] = new Queen();
+					break ;
+				case 13:hand[iter] = new King();
+					break ;
+			}
+			if (!hand[iter]->getCount())
+			{
+				delete hand[iter];
+				used[choise - 1] = 1;
+			}
+			bool no_cards = true;
+			for (int i = 0; i < 13; i++)
+			{
+				if (!used[i])
+					no_cards = false;
+			}
+			if (no_cards)
+				return (0);
+		}while(!hand[iter]);
+	}
+	int	getPoints()
+	{
+		return(points);
+	}
+}
