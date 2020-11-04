@@ -11,7 +11,7 @@ class Person
     int         age     = 0;
     char        sex     = '\0';
     int         weight  = 0;
-    protected:
+    public:
     void        setName(std::string n)
     {
         name = n;
@@ -28,30 +28,30 @@ class Person
     {
         weight = w;
     }
-    std::string getName()
+    std::string getName() const
     {
         return (name);
     }
-    int         getAge()
+    int         getAge() const
     {
         return (age);
     }
-    char        getSex()
+    char        getSex() const
     {
         return (sex);
     }
-    int         getWeight()
+    int         getWeight() const
     {
         return (weight);
     }
 };
 
-class Student: protected Person
+class Student: public Person
 {
     private:
     static int numberOfStudents;
     public:
-    Student()
+    Student(std::string name, int age, char sex, int weight): Person(name, age, sex, weight)
     {
         numberOfStudents++;
     }
@@ -69,6 +69,14 @@ class Student: protected Person
         std::cout << "Sex:\t" << (getSex() == 'm' ? "male" : "female") << std::endl;
         std::cout << "Weight:\t" << getWeight() << std::endl;
         std::cout << "NofS:\t" << numberOfStudents << std::endl;
+    }
+    static int getNumber()
+    {
+        return (numberOfStudents);
+    }
+    ~Student()
+    {
+        numberOfStudents--;
     }
 };
 int Student::numberOfStudents = 0;
