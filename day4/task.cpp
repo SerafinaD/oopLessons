@@ -66,7 +66,11 @@ class Hand
     }
     void Clear()
     {
-        Cards.clear();
+        while (!Cards.empty())
+        {
+            delete Cards.back();
+            Cards.pop_back();
+        }
     }
     int GetValue()
     {
