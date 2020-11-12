@@ -86,14 +86,14 @@ class Car
 {
     private:
     std::string company, model;
-    protected:
+    public:
     Car(std::string c, std::string m): company(c), model(m)
     {
         std::cout << "Car: " << company << '\t' << model << std::endl;
     }
 };
 
-class PassengerCar: virtual protected Car
+class PassengerCar: virtual public Car
 {
     public:
     PassengerCar(std::string c, std::string m): Car(c, m)
@@ -102,7 +102,7 @@ class PassengerCar: virtual protected Car
     }
 };
 
-class Bus: virtual protected Car
+class Bus: virtual public Car
 {
     public:
     Bus(std::string c, std::string m): Car(c, m)
@@ -255,6 +255,9 @@ class Card
     {
         value = ace;
         faceUp = false;
+    }
+    Card(e_suit s, e_value v): value(v), suit(s)
+    {
     }
     void Flip()
     {
