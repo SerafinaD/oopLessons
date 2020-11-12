@@ -10,11 +10,11 @@ class GenericPlayer: public Hand
     std::string name;
     public:
     virtual IsHitting() = 0;
-    bool IsBoosted()
+    bool IsBoosted() const
     {
         return (GetValue() > 21);
     }
-    void Bust()
+    void Bust() const
     {
         std::cout << name << " busted!" << std::endl;
     }
