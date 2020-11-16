@@ -3,13 +3,13 @@
 int main()
 {
     int n;
-    cout << "Enter int : ";
-    while(!(cin >> n) || cin.get() != '\n') 
+    std::cout << "Enter int : ";
+    while(!(std::cin >> n) || std::cin.get() != '\n') 
     {
-        cout<<"It's not an int.\n";
-        cin.clear();
-        cin.sync();
-        cout << "Enter int : ";
+        std::cout<<"It's not an int.\n";
+        std::cin.clear();
+        std::cin.sync();
+        std::cout << "Enter int : ";
     }
     return 0;
 }
